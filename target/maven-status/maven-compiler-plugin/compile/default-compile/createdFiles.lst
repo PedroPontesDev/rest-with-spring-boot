@@ -1,0 +1,12 @@
+com/devPontes/WebService/mapper/MyMapper.class
+com/devPontes/WebService/Startup.class
+com/devPontes/WebService/exceptions/handler/CustomizedResponseEntityExcpetionHandler.class
+com/devPontes/WebService/repositories/PersonRepository.class
+com/devPontes/WebService/data/DTO/v2/PersonDTOv2.class
+com/devPontes/WebService/data/DTO/v1/PersonDTO.class
+com/devPontes/WebService/model/entities/Person.class
+com/devPontes/WebService/exceptions/ExceptionResponse.class
+com/devPontes/WebService/mapper/custom/PersonMapper.class
+com/devPontes/WebService/services/PersonService.class
+com/devPontes/WebService/controllers/PersonController.class
+com/devPontes/WebService/exceptions/ResourceNotFoundException.class

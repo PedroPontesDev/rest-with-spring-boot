@@ -1,0 +1,12 @@
+/home/pedr0/Área de Trabalho/Learning/WebService/src/main/java/com/devPontes/WebService/mapper/MyMapper.java
+/home/pedr0/Área de Trabalho/Learning/WebService/src/main/java/com/devPontes/WebService/Startup.java
+/home/pedr0/Área de Trabalho/Learning/WebService/src/main/java/com/devPontes/WebService/repositories/PersonRepository.java
+/home/pedr0/Área de Trabalho/Learning/WebService/src/main/java/com/devPontes/WebService/data/DTO/v2/PersonDTOv2.java
+/home/pedr0/Área de Trabalho/Learning/WebService/src/main/java/com/devPontes/WebService/exceptions/handler/CustomizedResponseEntityExcpetionHandler.java
+/home/pedr0/Área de Trabalho/Learning/WebService/src/main/java/com/devPontes/WebService/data/DTO/v1/PersonDTO.java
+/home/pedr0/Área de Trabalho/Learning/WebService/src/main/java/com/devPontes/WebService/controllers/PersonController.java
+/home/pedr0/Área de Trabalho/Learning/WebService/src/main/java/com/devPontes/WebService/services/PersonService.java
+/home/pedr0/Área de Trabalho/Learning/WebService/src/main/java/com/devPontes/WebService/mapper/custom/PersonMapper.java
+/home/pedr0/Área de Trabalho/Learning/WebService/src/main/java/com/devPontes/WebService/model/entities/Person.java
+/home/pedr0/Área de Trabalho/Learning/WebService/src/main/java/com/devPontes/WebService/exceptions/ResourceNotFoundException.java
+/home/pedr0/Área de Trabalho/Learning/WebService/src/main/java/com/devPontes/WebService/exceptions/ExceptionResponse.java
