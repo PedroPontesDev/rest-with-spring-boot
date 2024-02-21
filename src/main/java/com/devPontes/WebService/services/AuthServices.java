@@ -15,6 +15,9 @@ import com.devPontes.WebService.model.entities.User;
 import com.devPontes.WebService.repositories.UserRepository;
 import com.devPontes.WebService.security.jwt.JwtTokenProvider;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 @Service
 public class AuthServices {
 
@@ -65,5 +68,24 @@ public class AuthServices {
 			}
 			return ResponseEntity.ok(tokenResponse);
 		}
+	
+
+	@SuppressWarnings("rawtypes")
+	public ResponseEntity<String> signOut(HttpServletRequest request, HttpServletResponse response) {
+	    String token = request.getHeader("Authorization");
+	    if (token != null && token.startsWith("Bearer ")) {
+	        // Remove o token JWT do cabeçalho de autorização
+	        response.setHeader("Authorization", "");
+	        response.setHeader("Expires", "0");
+	        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	        response.setHeader("Pragma", "no-cache");
+	        return ResponseEntity.ok("Logout bem sucedido");
+	    } else {
+	        return ResponseEntity.badRequest().body("Token JWT inválido ou ausente");
+	    }
 	}
+
+}
+
+
 

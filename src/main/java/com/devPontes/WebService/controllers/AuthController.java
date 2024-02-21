@@ -16,6 +16,8 @@ import com.devPontes.WebService.services.AuthServices;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Tag(name = "Authentication Endpoint")
 @RestController
@@ -35,6 +37,13 @@ public class AuthController {
 		if(token == null) return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
 		return token;
 	}
+	
+	@SuppressWarnings("rawtypes")
+	@Operation(summary = "Make the logout of the users")
+	@PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
+        return authServices.signOut(request, response);
+    }
 	
 	@SuppressWarnings("rawtypes")
 	@Operation(summary = "Refresh token for authenticated user and returns a token")

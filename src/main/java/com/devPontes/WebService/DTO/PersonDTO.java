@@ -9,6 +9,8 @@ import com.devPontes.WebService.model.entities.Person;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import jakarta.persistence.Column;
+
 @JsonPropertyOrder({ "id", "firstName", "lastName", "addres", "gender" })
 public class PersonDTO extends RepresentationModel<PersonDTO> implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -18,6 +20,8 @@ public class PersonDTO extends RepresentationModel<PersonDTO> implements Seriali
 	private String lastName;
 	private String address;
 	private String gender;
+	private Boolean enabled;
+
 
 	public PersonDTO(Long id, String firstName, String lastName, String address, String gender) {
 		this.id = id;
@@ -69,6 +73,14 @@ public class PersonDTO extends RepresentationModel<PersonDTO> implements Seriali
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+	
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
 
 	@Override
 	public int hashCode() {
@@ -95,6 +107,7 @@ public class PersonDTO extends RepresentationModel<PersonDTO> implements Seriali
 		return "PersonDTO [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
 				+ ", gender=" + gender + "]";
 	}
+
 
 	
 }
