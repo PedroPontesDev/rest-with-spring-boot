@@ -1,7 +1,17 @@
+cors:
+  originPatterns:
+    - http://localhost:8080
+
+security:
+  jwt:
+    token:
+      secret-key: 53cr37
+      expire-length: 3600000
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/db_study?useTimezone=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/db_study
     username: root
     password: 35828889
   jpa:
@@ -10,5 +20,12 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
-    show-sql: false
+    show-sql: true
 
+spring-doc:
+  pathsToMatch: 
+  - /auth/**
+  - /api/**/v1/**
+
+swagger-ui:
+  use-root-path: true

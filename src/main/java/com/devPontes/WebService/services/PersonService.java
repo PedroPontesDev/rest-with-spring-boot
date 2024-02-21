@@ -6,11 +6,14 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.devPontes.WebService.data.DTO.v1.PersonDTO;
-import com.devPontes.WebService.data.DTO.v2.PersonDTOv2;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
+import com.devPontes.WebService.DTO.PersonDTO;
+import com.devPontes.WebService.controllers.PersonController;
+import com.devPontes.WebService.exceptions.RequiredObjectIsNullException;
 import com.devPontes.WebService.exceptions.ResourceNotFoundException;
 import com.devPontes.WebService.mapper.MyMapper;
-import com.devPontes.WebService.mapper.custom.PersonMapper;
 import com.devPontes.WebService.model.entities.Person;
 import com.devPontes.WebService.repositories.PersonRepository;
 
@@ -19,33 +22,43 @@ public class PersonService {
 
 	@Autowired
 	PersonRepository repository;
-	
-	@Autowired 
-	PersonMapper mapper;
 
 	private Logger logger = Logger.getLogger(PersonService.class.getName());
 
 	public List<PersonDTO> findAll() {
-		return MyMapper.parseListObjects(repository.findAll(), PersonDTO.class);
+		var persons = MyMapper.parseListObjects(repository.findAll(), PersonDTO.class);
+		persons.forEach(p -> p.add(linkTo(methodOn(PersonController.class).findAll()).withSelfRel()));
+		return persons;
+
 	}
 
-	public PersonDTO findById(Long id) {
+	public PersonDTO findById(Long id) throws Exception {
 		logger.info("Finding one PersonDTO!");
 		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this id!"));
-		return MyMapper.parseObject(entity, PersonDTO.class);
+		var dto = MyMapper.parseObject(entity, PersonDTO.class);
+		// Escolha qual metodo do controller sera atribuido os links HATEOAS
+		dto.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+		return dto;
+		// Após fazer o dto exteneder RepresentationModel, você já é capaz de add links
+	   // de HATEOAS
+
 	}
 
-	public PersonDTO createPersonDTO(PersonDTO personDTO) {
+	public PersonDTO createPersonDTO(PersonDTO personDTO) throws Exception {
+		if (personDTO == null)
+			throw new RequiredObjectIsNullException();
 		logger.info("Creating PersonDTO!");
 		var entity = MyMapper.parseObject(personDTO, Person.class);
 		var dto = MyMapper.parseObject(repository.save(entity), PersonDTO.class);
+		dto.add(linkTo(methodOn(PersonController.class).findById(dto.getId())).withSelfRel());
 		return dto;
-	}
+	}  
 
-	public PersonDTO updatePersonDTO(PersonDTO PersonDTO) {
+	public PersonDTO updatePersonDTO(PersonDTO PersonDTO) throws Exception {
+		if (PersonDTO == null)
+			throw new RequiredObjectIsNullException();
 		logger.info("Updating PersonDTO!");
-
 		var entity = repository.findById(PersonDTO.getId()) // Todas requisições PUT primeiro tenho que buscar no banco
 															// e atualizar e depois gravar
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this id!"));
@@ -56,6 +69,7 @@ public class PersonService {
 		entity.setGender(PersonDTO.getGender());
 
 		var dto = MyMapper.parseObject(repository.save(entity), PersonDTO.class);
+		dto.add(linkTo(methodOn(PersonController.class).findById(dto.getId())).withSelfRel());
 		return dto;
 	}
 
@@ -66,12 +80,6 @@ public class PersonService {
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this id!"));
 		repository.delete(entity);
 
-	}
-
-	public PersonDTOv2 createPersonDTOv2(PersonDTOv2 personDTOv2) {
-		var entity = MyMapper.parseObject(personDTOv2, Person.class);
-		var dto = MyMapper.parseObject(repository.save(entity), PersonDTOv2.class);
-		return dto;
 	}
 
 }

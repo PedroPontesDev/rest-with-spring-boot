@@ -1,1 +1,7 @@
-/home/pedr0/Área de Trabalho/Learning/WebService/src/test/java/com/devPontes/WebService/WebServiceApplicationTests.java
+/home/pedr0/Área de Trabalho/Learning/Webservice[/rest-with-spring-boot/WebService/src/test/java/com/devPontes/WebService/unittests/MockPerson.java
+/home/pedr0/Área de Trabalho/Learning/Webservice[/rest-with-spring-boot/WebService/src/test/java/com/devPontes/WebService/configs/TestConfigs.java
+/home/pedr0/Área de Trabalho/Learning/Webservice[/rest-with-spring-boot/WebService/src/test/java/com/devPontes/WebService/unittests/mockito/services/PersonServiceTest.java
+/home/pedr0/Área de Trabalho/Learning/Webservice[/rest-with-spring-boot/WebService/src/test/java/com/devPontes/WebService/unittests/MockBook.java
+/home/pedr0/Área de Trabalho/Learning/Webservice[/rest-with-spring-boot/WebService/src/test/java/com/devPontes/WebService/integrationtests/testcontainers/AbstractIntegrationTest.java
+/home/pedr0/Área de Trabalho/Learning/Webservice[/rest-with-spring-boot/WebService/src/test/java/com/devPontes/WebService/integrationtests/swagger/SwaggerIntegrationTest.java
+/home/pedr0/Área de Trabalho/Learning/Webservice[/rest-with-spring-boot/WebService/src/test/java/com/devPontes/WebService/unittests/mockito/services/BookServiceTest.java
